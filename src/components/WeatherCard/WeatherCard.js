@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react';
 import {APP_ID} from "../../config";
 import "./WeatherCard.style.css";
 import {getDayName} from "../../utils";
+import WeatherTile from "../WeatherTile";
+import WeatherChart from "../WeatherChart";
 
 
 
@@ -12,25 +14,28 @@ const WeatherCard = props => {
     const currentWeatherDetail = list[0];
     const day = getDayName(new Date(currentWeatherDetail.dt_txt).getDay());
     const skyDescription = currentWeatherDetail.weather[0].main;
+    //let result = [];
     
     let date = [];
     const currentDateHours = new Date(currentWeatherDetail.dt_txt).getHours();
-    const result = list.filter(obj => {
-        const nextDate = new Date(obj.dt_txt).getDate();
-        const nextDateHours = new Date(obj.dt_txt).getHours();
-        if(!date.includes(nextDate) && currentDateHours == nextDateHours)
-        {
-            date.push(nextDate);
-            return true;
-        }
-        return false;
-      });
-
-    console.log(result);
-    return weatherData.cod == "200"  ? (
+    //const testMethod = async () => {
+         const result = list.filter(obj => {
+            const nextDate = new Date(obj.dt_txt).getDate();
+            const nextDateHours = new Date(obj.dt_txt).getHours();
+            if(!date.includes(nextDate) && currentDateHours == nextDateHours)
+            {
+                date.push(nextDate);
+                return true;
+            }
+            return false;
+        });
+    //}
+    //await testMethod();
+    console.log("WeatherCard",result);
+    return (
         <div className="weatherCardContainer">
             <div>
-            <h3 className="weatherCardHeaderText">{weatherData.city.name}</h3>
+            <h3 className="weatherCardHeaderText">{weatherData.city.name}, {weatherData.city.country}</h3>
             <h4 className="weatherCardHeaderText">{day}</h4>
             <h5 className="weatherCardHeaderText">{skyDescription}</h5>
 
@@ -38,7 +43,7 @@ const WeatherCard = props => {
             <div class="currentWeatherContainer">
                 <div class="temperatureSection">
                     <img className="avatar" alt="weather" src={`http://openweathermap.org/img/w/${currentWeatherDetail.weather[0].icon}.png`}/>
-                    <h3 className="custom-h3">38</h3>
+                    <h3 className="custom-h3">{Math.floor(currentWeatherDetail.main.temp)}</h3>
                     <h4 className="degrees-h4">°C</h4>
                 </div>
                 <div class="detailSection">
@@ -47,8 +52,21 @@ const WeatherCard = props => {
                     <p className="temperatureDetails">Wind Speed: {currentWeatherDetail.wind.speed} m/s</p>
                 </div>
             </div>
+            <hr/>
+            <div className="temperatureForcastContainer">
+                {result.map((item)=>{
+                    return (
+                        <WeatherTile data = {item} />
+                    )
+                })}
+            </div>
+            <hr/>
+            <div>
+
+            <WeatherChart data = {result}/>
+            </div>
         </div>
-    ) : (<div>Result Not Found.</div>);
+    );
 };
 
 export default WeatherCard;

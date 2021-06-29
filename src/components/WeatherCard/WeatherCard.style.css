@@ -13,12 +13,17 @@
     width: 400px;
     display: grid;
     grid-template-columns: 60% 40% ;
-    
+    margin-bottom: 10px;
   }
 
   .temperatureSection{
     display: grid;
     grid-template-columns: 20% 0.36fr 0.7fr ;
+  }
+
+  .temperatureForcastContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
   }
 
   .avatar{

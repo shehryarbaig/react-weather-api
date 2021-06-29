@@ -12,7 +12,7 @@ function App() {
     //console.log("inside fetch");
     const resp = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${searchQuery}&units=metric&appid=${APP_ID}`);
     const responseJson = await resp.json();
-    console.log(responseJson);
+    //console.log(responseJson);
     setWeatherData(responseJson);
     
   }
@@ -27,7 +27,7 @@ function App() {
         <SearchBar onClick={handleCLick} placeholder="Enter City Name"/>
       </div>
       <div className="weatherCardSection">
-        {weatherData && <WeatherCard weatherData = {weatherData}/>}
+        {weatherData ? (weatherData.cod==="200" ? <WeatherCard weatherData = {weatherData}/> : <div>Result Not Found</div>):<div/> }
 
       </div>
     </div>
