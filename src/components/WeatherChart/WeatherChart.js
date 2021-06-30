@@ -8,7 +8,6 @@ const WeatherChart = props => {
     const {data} = props;
     const daysLabel = [];
     const daysTemperature = [];
-    //console.log("chart",data);
     data.map((item) => {
         daysLabel.push(getDayName(new Date(item.dt_txt).getDay()));
         daysTemperature.push(Math.floor(item.main.temp));
