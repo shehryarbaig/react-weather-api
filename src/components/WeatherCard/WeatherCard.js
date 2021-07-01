@@ -17,7 +17,7 @@ const WeatherCard = props => {
     const result = list.filter(obj => {
         const nextDate = new Date(obj.dt_txt).getDate();
         const nextDateHours = new Date(obj.dt_txt).getHours();
-        if (!date.includes(nextDate) && currentDateHours == nextDateHours) {
+        if (!date.includes(nextDate) && currentDateHours === nextDateHours) {
             date.push(nextDate);
             return true;
         }
