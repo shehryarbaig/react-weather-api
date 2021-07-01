@@ -6,15 +6,9 @@ import {getDayName} from "../../utils";
 const WeatherChart = props => {
 
     const {data} = props;
-    const daysLabel = [];
-    const daysTemperature = [];
-    data.map((item) => {
-        daysLabel.push(getDayName(new Date(item.dt_txt).getDay()));
-        daysTemperature.push(Math.floor(item.main.temp));
-    })
 
     const state = {
-        labels: daysLabel,
+        labels: data.map((item) => {return getDayName(new Date(item.dt_txt).getDay())}),
         datasets: [
           {
             label: 'Temperature',
@@ -23,7 +17,7 @@ const WeatherChart = props => {
             backgroundColor: 'rgba(75,192,192,1)',
             borderColor: 'rgba(0,0,0,1)',
             borderWidth: 2,
-            data: daysTemperature
+            data: data.map((item) => {return Math.floor(item.main.temp)})
           }
         ]
       }
