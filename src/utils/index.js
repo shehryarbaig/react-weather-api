@@ -12,11 +12,16 @@ export const getDayName = (dayNumber) => {
 }
 
 export const useFetch = async (url) => {
+    const options={
+        header:{
+            "Access-Control-Allow-Origin":"*"
+        }
+    }
 
     let response = null;
     let error = null;
     try {
-        const res = await fetch(url);
+        const res = await fetch(url,options);
         const json = await res.json();
         response = json
 
