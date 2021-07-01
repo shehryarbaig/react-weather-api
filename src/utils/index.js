@@ -16,7 +16,7 @@ export const useFetch = async (url) => {
         headers:{
             "Access-Control-Allow-Credentials": true,
             "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
-            "Access-Control-Allow-Origin":"http://api.openweathermap.org",
+            "Access-Control-Allow-Origin":"*",
             "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
             'Content-Type':'application/json'
         }
