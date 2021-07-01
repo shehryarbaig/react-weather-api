@@ -13,7 +13,7 @@ export const getDayName = (dayNumber) => {
 
 export const useFetch = async (url) => {
     const options={
-        header:{
+        headers:{
             "Access-Control-Allow-Origin":"*"
         }
     }
