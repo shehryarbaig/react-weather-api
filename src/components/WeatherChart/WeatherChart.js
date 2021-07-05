@@ -11,13 +11,18 @@ const WeatherChart = props => {
         labels: data.map((item) => {return getDayName(new Date(item.dt_txt).getDay())}),
         datasets: [
           {
-            label: 'Temperature',
-            fill: false,
-            lineTension: 0.5,
-            backgroundColor: 'rgba(75,192,192,1)',
-            borderColor: 'rgba(0,0,0,1)',
-            borderWidth: 2,
-            data: data.map((item) => {return Math.floor(item.main.temp)})
+            label: 'Min Temperature',
+            data: data.map((item) => {return Math.floor(item.main.temp_min)}),
+            borderColor: 'rgb(75, 192, 192)',
+            backgroundColor: 'rgb(75, 192, 192)',
+            fill: '-1'
+          },
+          {
+            label: 'Max Temperature',
+            data: data.map((item) => {return Math.floor(item.main.temp_max)}),
+            borderColor: 'rgb(54, 162, 235)',
+            backgroundColor: "#CCEBFA",
+            fill: '-1'
           }
         ]
       }
@@ -27,14 +32,16 @@ const WeatherChart = props => {
             <Line
           data={state}
           options={{
-            title:{
-              display:true,
-              text:'Temperature each day',
-              fontSize:20
+            plugins: {
+              filler: {
+                propagate: false
+              },
+              'samples-filler-analyser': {
+                target: 'chart-analyser'
+              }
             },
-            legend:{
-              display:true,
-              position:'right'
+            interaction: {
+              intersect: false,
             }
           }}
         />
