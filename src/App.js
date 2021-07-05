@@ -9,8 +9,8 @@ function App() {
   const [weatherData, setWeatherData] = useState();  
 
   const FetchWeatherData = async (searchQuery) =>{
-    const data = await useFetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast?q=${searchQuery}&units=metric&appid=${APP_ID}`);
-
+   const data = await useFetch(`https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/forecast?q=${searchQuery}&units=metric&appid=${APP_ID}`);
+   
     if (data.error === null) {
       setWeatherData(data.response)
     }
