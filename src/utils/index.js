@@ -43,6 +43,6 @@ export const useFetch = async (url) => {
 
 export function useDebounce(callback, delay)
 {
-    return useCallback(debounce(callback,delay),[]);
+    return useCallback(debounce(callback,delay),[delay]); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
