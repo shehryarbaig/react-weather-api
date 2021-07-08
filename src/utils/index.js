@@ -1,3 +1,6 @@
+import {debounce} from "lodash";
+import { useCallback } from "react";
+
 export const getDayName = (dayNumber) => {
     switch (dayNumber) {
         case 0: return 'Sunday'
@@ -36,4 +39,10 @@ export const useFetch = async (url) => {
 
     return { response, error };
 };
+
+
+export function useDebounce(callback, delay)
+{
+    return useCallback(debounce(callback,delay),[]);
+}
 
