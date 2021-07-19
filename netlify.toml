@@ -1,0 +1,5 @@
+[[redirects]]
+from = "https://objective-archimedes-d76ae8.netlify.app/api.openweathermap.org/*"
+to = "http://api.openweathermap.org/:splat"
+status = 200
+force = true

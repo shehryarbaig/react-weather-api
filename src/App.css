@@ -1,0 +1,15 @@
+.App {
+  
+}
+
+.searchSection{
+  display: flex;
+  justify-content: center;
+}
+
+.weatherCardSection{
+  display: flex;
+  justify-content: center;
+}
+
+
